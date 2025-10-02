@@ -39,16 +39,12 @@ def filter_and_analyze_data(df):
     """任務三與四：篩選資料與統計"""
     
     # TODO 3.1: 找出數學成績 < 60 的學生
-    math_failed = None
-    print("--數學不及格學生--")
-    math_df = df[df['數學'] < 60]
-    print(math_df)
+    math_failed = df[df['數學'] < 60]
+
 
     # TODO 3.2: 找出班級為 'A' 且英文 > 90 的學生
-    high_A = None
-    print("--A班英文>90分學生--")
-    en_df = df[(df['英文'] > 90) & (df['班級']=='A')]
-    print(en_df)
+    high_A = df[(df['英文'] > 90) & (df['班級']=='A')]
+
 
     # TODO 4.1: 統計摘要
     summary = df.describe
@@ -58,7 +54,8 @@ def filter_and_analyze_data(df):
     # TODO 4.2: 找出總分最高的學生
     
     print("--總分最高學生--")
-    top_student = df['總分'].max()
+    max_score = df['總分'].max()
+    top_student = df['總分' == max_score]
     print("姓名 ", "Grace")
     print("總分 ", top_student)
 
@@ -77,7 +74,7 @@ def save_results(df, output_file_path):
     """任務五：儲存為 CSV"""
     
     # TODO 5.1: 儲存 CSV，避免中文亂碼
-    #df.to_csv(grades_analyzed.csv)
+    df.to_csv(output_file_path, index=False, encoding='utf-8-sig')
 
 if __name__ == "__main__":
     INPUT_CSV = "grades.csv"
